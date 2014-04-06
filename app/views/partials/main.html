@@ -1,0 +1,33 @@
+<div ng-include="'partials/navbar'"></div>
+<div ng-if="message" class="row text-center">
+  <p>{{message}}</p>
+</div>
+<form class="navbar-form" role="search">
+  <div class="input-group">
+    <input type="text" autocomplete="off" class="form-control" ng-model="filterbox" placeholder="Quick Filter" />
+    <div class="input-group-btn">
+      <button class="btn btn-default" type="clear" ng-click="filterbox = ''">
+        <i class="glyphicon glyphicon-remove-circle"></i></button>
+    </div>
+  </div>
+</form>
+<div class="row marketing">
+  <div ng-animate="'animate'" ng-repeat="s in stations | filter:filterbox | orderBy:predicate:reverse">
+      <h4>{{s.stationName}}
+        <span ng-if="s.favourite"><span ng-click="toggleFav(s)" 
+          class="glyphicon glyphicon-star pull-right"></span></span>
+        <span ng-if="!s.favourite"><span ng-click="toggleFav(s)"
+          class="glyphicon glyphicon-star-empty pull-right"></span>
+        </span>
+        <span class="small pull-right" ng-if="s.distance"><br/>{{s.distance}} km</span>
+      </h4>
+      <p>Bikes: {{s.availableBikes}}, Docks: {{s.availableDocks}} open of {{s.totalDocks}}</p>
+      
+  </div>
+</div>
+
+<p ng-if="lastupdate">Last updated: {{lastupdate | date:'shortTime'}}</p>
+
+<div class="footer">
+  <p>Built with ♥ by <a href="http://darrylclarke.com/">Darryl Clarke</a> using Yeoman and friends.</p>
+</div>
