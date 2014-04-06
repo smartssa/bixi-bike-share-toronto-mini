@@ -1,6 +1,8 @@
 bixi-bike-share-toronto-mini
 ============================
 
+You can view a live demo here: http://bikes.darrylclarke.com/
+
 a miniaturized, real-time-ish, bike share toronto (formerly bixi) utility app.
 
 More useful, less features. Less is more.
@@ -11,3 +13,9 @@ More useful, less features. Less is more.
 * Node.js server handles the updates from Bike Share so we don't hammer it
 
 Built with angular, node.js, socket.io and some other things.
+
+TODO:
+* Add socket.io for realtime data change notifications
+* Clean up the layout a bit
+* Add Tests
+* Add more awesomeness.
