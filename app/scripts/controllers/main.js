@@ -44,6 +44,30 @@ angular.module('bixiBikeShareTorontoMiniApp')
           } else {
             s.favourite = 0;
           }
+          // update dock/bike status flags
+          s.noDocks = false;
+
+          if (s.availableDocks <= 3) {
+            s.lowDocks = true;
+          } else {
+            s.lowDocks = false;
+          }
+          if (s.availableDocks === 0) {
+            s.lowDocks = false;
+            s.noDocks = true;
+          }
+
+          s.noBikes = false;
+          if (s.availableBikes <= 3) {
+            s.lowBikes = true;
+          } else {
+            s.lowBikes = false;
+          }
+
+          if (s.availableBikes === 0) {
+            s.lowBikes = false;
+            s.noBikes = true;
+          }
         }
         $scope.stations = stations.stationBeanList;
         $scope.lastupdate = stations.executionTime;

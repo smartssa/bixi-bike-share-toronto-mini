@@ -12,16 +12,28 @@
   </div>
 </form>
 <div class="row marketing">
-  <div ng-animate="'animate'" ng-repeat="s in stations | filter:filterbox | orderBy:predicate:reverse">
+  <div class="station" ng-animate="'animate'" ng-repeat="s in stations | filter:filterbox | orderBy:predicate:reverse">
+      <div class="pull-right">
+        <p class="lead">
+          <span ng-if="s.favourite"><span ng-click="toggleFav(s)" 
+            class="glyphicon glyphicon-star pull-right"></span></span>
+          <span ng-if="!s.favourite"><span ng-click="toggleFav(s)"
+            class="glyphicon glyphicon-star-empty pull-right"></span>
+          </span>
+        </p>
+      </div>
       <h4>{{s.stationName}}
-        <span ng-if="s.favourite"><span ng-click="toggleFav(s)" 
-          class="glyphicon glyphicon-star pull-right"></span></span>
-        <span ng-if="!s.favourite"><span ng-click="toggleFav(s)"
-          class="glyphicon glyphicon-star-empty pull-right"></span>
-        </span>
-        <span class="small pull-right" ng-if="s.distance"><br/>{{s.distance}} km</span>
+        <span class="small" ng-if="s.distance"><br/>{{s.distance}} km</span>
       </h4>
-      <p>Bikes: {{s.availableBikes}}, Docks: {{s.availableDocks}} open of {{s.totalDocks}}</p>
+      <p>
+        <span ng-if="!s.lowBikes && !s.noBikes" class="label label-success">OK</span>
+        <span ng-if="s.lowBikes && !s.noBikes" class="label label-warning">LOW</span>
+        <span ng-if="s.noBikes" class="label label-danger">EMPTY</span>
+        Bikes: {{s.availableBikes}}
+        <span ng-if="!s.lowDocks && !s.noDocks" class="label label-success">OK</span>
+        <span ng-if="s.lowDocks && !s.noDocks" class="label label-warning">LOW</span>
+        <span ng-if="s.noDocks" class="label label-danger">FULL</span>
+        Docks: {{s.availableDocks}} of {{s.totalDocks}}</p>
       
   </div>
 </div>
