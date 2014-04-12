@@ -20,13 +20,17 @@ angular.module('bixiBikeShareTorontoMiniApp')
       $scope.favourites = [];
       storageservice.save('favourites', $scope.favourites);
     }
-    geolocation().then(function (position) {
-      $scope.position = position;
-      $scope.message = null;
-      $scope.updateDistances();
-    }, function (reason) {
-      $scope.message = 'Could not be determined. ' + reason;
-    });
+
+    $scope.updateLocation = function() {
+      geolocation().then(function (position) {
+        $scope.position = position;
+        $scope.message = null;
+        $scope.updateDistances();
+        $timeout($scope.updateLocation, 5000); // update every 5 seconds.
+      }, function (reason) {
+        $scope.message = 'Could not be determined. ' + reason;
+      });
+    };
 
     $scope.updateStations = function() {
       $http.get('/api/stations').success(function(stations) {
@@ -92,6 +96,7 @@ angular.module('bixiBikeShareTorontoMiniApp')
       }
     };
 
+    $scope.updateLocation();
     $scope.updateStations();
   }
 ]);

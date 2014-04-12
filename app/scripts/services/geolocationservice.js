@@ -9,7 +9,7 @@ angular.module('bixiBikeShareTorontoMiniApp')
             deferred.reject(new Error('Geolocation is not supported'));
           });
         } else {
-          $window.navigator.geolocation.watchPosition(function (position) {
+          $window.navigator.geolocation.getCurrentPosition(function (position) {
             $rootScope.$apply(function() {
               deferred.resolve(position);
             });
