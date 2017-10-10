@@ -1,7 +1,7 @@
 bixi-bike-share-toronto-mini
 ============================
 
-You can view a live demo here: http://bikes.darrylclarke.com/
+You can view a live demo here (Currently broken, needs SSL for location to work now): http://bikes.darrylclarke.com/
 
 a miniaturized, real-time-ish, bike share toronto (formerly bixi) utility app.
 
